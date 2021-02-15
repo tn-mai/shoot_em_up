@@ -182,7 +182,6 @@ if not exist "$(TargetDir)glew32d.dll" (
     <ClCompile Include="Lib\Easy\UniformBuffer.cpp" />
     <ClCompile Include="Src\Main.cpp" />
     <ClCompile Include="Src\ShootEmUp.cpp" />
-    <ClCompile Include="Src\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib\Easy\Audio.h" />
@@ -200,7 +199,6 @@ if not exist "$(TargetDir)glew32d.dll" (
     <ClInclude Include="Lib\Easy\TweenAnimation.h" />
     <ClInclude Include="Lib\Easy\UniformBuffer.h" />
     <ClInclude Include="Src\ShootEmUp.h" />
-    <ClInclude Include="Src\Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
