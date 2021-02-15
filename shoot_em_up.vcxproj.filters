@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ライブラリ">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="ライブラリ\Easy">
+      <UniqueIdentifier>{44a921b1-c59d-4e18-8f5c-2323eb9135b9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Lib\Easy\Audio.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Easy\BufferObject.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Easy\Font.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Easy\FrameAnimation.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Easy\GLFWEW.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Easy\Node.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Easy\Shader.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Easy\Sprite.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Easy\Texture.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Easy\TweenAnimation.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Easy\UniformBuffer.cpp">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ShootEmUp.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Test.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lib\Easy\Audio.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\BufferObject.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\d3dx12.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\Font.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\FrameAnimation.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\GamePad.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\GLFWEW.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\Log.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\Node.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\Shader.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\Sprite.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\Texture.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\TweenAnimation.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Easy\UniformBuffer.h">
+      <Filter>ライブラリ\Easy</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\ShootEmUp.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Test.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
