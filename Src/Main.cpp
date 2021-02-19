@@ -25,7 +25,7 @@ void title()
   if (get_key(' ') == 1) {
     scene_number = 1; // ゲーム画面に切り替える
 
-    // ゲーム開始時の変数の設定
+    // ゲーム開始時の設定
     teki_x = 0;
     teki_y = 0;
     jiki_x = 0;
