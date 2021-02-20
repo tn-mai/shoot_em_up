@@ -138,9 +138,6 @@ void initialize(const char* title)
   std::srand(std::random_device()());
 }
 
-/**
-*
-*/
 void update()
 {
   GLFWEW::Window& window = GLFWEW::Window::Instance();
@@ -172,40 +169,7 @@ void update()
   }
 }
 
-/**
-*
-*/
-void draw(double x, double y, const char* image)
-{
-  TexturePtr tex;
-  auto itr = textureCache.find(image);
-  if (itr != textureCache.end()) {
-    tex = itr->second;
-  } else {
-    std::string str;
-    str.reserve(1024);
-    str += "Res/‰æ‘œ/";
-    str += image;
-    tex = Texture::LoadFromFile(str.c_str());
-    if (tex) {
-      textureCache.emplace(std::string(image), tex);
-    }
-  }
-
-  Sprite sprite(tex);
-
-  sprite.Position(glm::vec3(win_to_ogl_coord(x, y), 0));
-  //sprite.Scale(glm::vec2(static_cast<float>(s)));
-  //sprite.Rotation(static_cast<float>(r));
-  //target.Shear(0);
-  //sprite.Color(glm::vec4(1, 1, 1, a));
-  //sprite.ColorMode(BlendMode_Multiply);
-
-  spriteBuffer.push_back(sprite);
-  rootNode.AddChild(&spriteBuffer.back());
-}
-
-void draw(double x, double y, const char* image, double scale)
+void draw(double x, double y, const char* image, double scale, double rotation)
 {
   TexturePtr tex;
   auto itr = textureCache.find(image);
@@ -226,7 +190,7 @@ void draw(double x, double y, const char* image, double scale)
 
   sprite.Position(glm::vec3(win_to_ogl_coord(x, y), 0));
   sprite.Scale(glm::vec2(static_cast<float>(scale)));
-  //sprite.Rotation(static_cast<float>(r));
+  sprite.Rotation(static_cast<float>(glm::radians(rotation)));
   //target.Shear(0);
   //sprite.Color(glm::vec4(1, 1, 1, a));
   //sprite.ColorMode(BlendMode_Multiply);
@@ -235,9 +199,10 @@ void draw(double x, double y, const char* image, double scale)
   rootNode.AddChild(&spriteBuffer.back());
 }
 
-/**
-*
-*/
+void draw(double x, double y, const char* image) { draw(x, y, image, 1, 0); }
+
+void draw(double x, double y, const std::string& image) { draw(x, y, image.c_str(), 1, 0); }
+
 void render()
 {
   GLFWEW::Window& window = GLFWEW::Window::Instance();

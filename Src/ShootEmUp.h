@@ -14,7 +14,14 @@ namespace ShootEmUp {
 */
 void initialize(const char* title);
 
+/**
+* ShootEmUpライブラリの状態を更新.
+*/
 void update();
+
+/**
+* ShootEmUpライブラリによる描画.
+*/
 void render();
 
 /**
@@ -23,11 +30,17 @@ void render();
 void finalize();
 
 /**
+* 画像を描画する.
 *
+* @param x     横の座標.
+* @param y     縦の座標.
+* @param image 描画する画像ファイル名.
+* @@aram scale 拡大率(1=拡大縮小なし).
+* @@aram rotation 回転(0～360).
 */
+void draw(double x, double y, const char* image, double scale, double rotation);
 void draw(double x, double y, const char* image);
-inline void draw(double x, double y, const std::string& image) { draw(x, y, image.c_str()); }
-void draw(double x, double y, const char* image, double scale);
+void draw(double x, double y, const std::string& image);
 
 /**
 * 指定されたキーの状態を取得する.
@@ -40,6 +53,14 @@ void draw(double x, double y, const char* image, double scale);
 */
 int get_key(int key);
 
+/**
+* 文字を描画する.
+*
+* @param x      横の座標.
+* @param y      縦の座標.
+* @param format 描画する文字列、または書式付き文字列.
+* @param ...    (書式付き文字列の場合)書式に対応する追加パラメータ.
+*/
 void xyprintf(double x, double y, const char* format, ...);
 
 /**
@@ -89,11 +110,11 @@ void set_sound_volume(double volume);
 void set_bgm_volume(double volume);
 
 // 特殊キーID.
-static int vk_enter = 257;
-static int vk_right = 262;
-static int vk_left  = 263;
-static int vk_down  = 264;
-static int vk_up    = 265;
+const int vk_enter = 257;
+const int vk_right = 262;
+const int vk_left  = 263;
+const int vk_down  = 264;
+const int vk_up    = 265;
 
 } // namespace ShootEmUp
 
