@@ -27,6 +27,7 @@ namespace /* unnamed */ {
 const double unitDeltaTime = 1.0 / 60.0;
 double remainingDeltaTime = 0;
 
+const size_t maxSpriteCount = 1024; // 最大スプライト数.
 Sprite rootNode; // 描画等の大本になるスプライト.
 std::vector<Sprite> spriteBuffer; // 実際に描画されるスプライトたち.
 SpriteRenderer spriteRenderer; // スプライト描画用変数.
@@ -123,7 +124,6 @@ void initialize(const char* title)
   }
 
   // スプライト及びテクスチャの初期設定.
-  const size_t maxSpriteCount = 1024;
   setlocale(LC_CTYPE, "JPN");
   Texture::Initialize();
   textureCache.reserve(maxSpriteCount);
@@ -171,6 +171,15 @@ void update()
 
 void draw(double x, double y, const char* image, double scale, double rotation)
 {
+  if (spriteBuffer.size() >= maxSpriteCount) {
+    static bool logged = false;
+    if (!logged) {
+      LOG("これ以上スプライトを追加できません(最大%zu個まで)\n.", maxSpriteCount);
+      logged;
+    }
+    return;
+  }
+
   TexturePtr tex;
   auto itr = textureCache.find(image);
   if (itr != textureCache.end()) {
@@ -181,9 +190,11 @@ void draw(double x, double y, const char* image, double scale, double rotation)
     str += "Res/画像/";
     str += image;
     tex = Texture::LoadFromFile(str.c_str());
-    if (tex) {
-      textureCache.emplace(std::string(image), tex);
+    if (!tex) {
+      //LOG("画像ファイル名%sが見つかりません. ファイル名を確認してください.\n.", image);
+      return;
     }
+    textureCache.emplace(std::string(image), tex);
   }
 
   Sprite sprite(tex);
