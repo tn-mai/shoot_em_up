@@ -307,7 +307,7 @@ void Renderer::MapBuffer()
 */
 void Renderer::UnmapBuffer()
 {
-  if (!pVBO || vboSize == 0) {
+  if (!pVBO) {
     return;
   }
   glBindBuffer(GL_ARRAY_BUFFER, vbo.Id());
