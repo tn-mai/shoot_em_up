@@ -128,19 +128,17 @@ const GamePad& Window::GetGamePad() const
 /**
 * GLFWEWの状態を更新する.
 */
-void Window::Update(bool updateKey)
+void Window::Update()
 {
   // キー状態更新.
-  if (updateKey) {
-    for (int i = 0; i < GLFW_KEY_LAST; ++i) {
-      if (keyValid[i]) {
-        const bool curState = glfwGetKey(window, i);
-        keyPressedInLastFrame[i] = !keyPressed[i] && curState;
-        keyPressed[i] = curState;
-      }
+  for (int i = 0; i < GLFW_KEY_LAST; ++i) {
+    if (keyValid[i]) {
+      const bool curState = glfwGetKey(window, i);
+      keyPressedInLastFrame[i] = !keyPressed[i] && curState;
+      keyPressed[i] = curState;
     }
-    UpdateGamePad();
   }
+  UpdateGamePad();
 
   glfwGetWindowSize(window, &width, &height);
 

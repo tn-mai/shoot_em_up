@@ -22,7 +22,7 @@ public:
   const GamePad& GetGamePad() const;
   bool GetKeyPressed(int n) const { return keyPressed[n]; }
   bool GetKeyPressedInLastFrame(int n) const { return keyPressedInLastFrame[n]; }
-  void Update(bool updateKey = true);
+  void Update();
   void ResetDeltaTime();
   float DeltaTime() const { return deltaTime; }
   int Width() const { return width; }

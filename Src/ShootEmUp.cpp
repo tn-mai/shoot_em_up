@@ -17,8 +17,7 @@
 #include <stdarg.h>
 #include <algorithm>
 #include <unordered_map>
-#include <thread>
-#include <chrono>
+#include <xmmintrin.h>
 
 namespace ShootEmUp {
 
@@ -143,16 +142,34 @@ void update()
   GLFWEW::Window& window = GLFWEW::Window::Instance();
 
   // デルタタイムがunitDeltaTimeを超えるまで待機.
-  bool updateKey = true;
+  const double startTime = glfwGetTime();
+  window.Update();
   for (;;) {
-    window.Update(updateKey);
-    remainingDeltaTime += window.DeltaTime();
-    if (remainingDeltaTime >= unitDeltaTime) {
+    const double diffTime = glfwGetTime() - startTime;
+    if (remainingDeltaTime + diffTime >= unitDeltaTime) {
+      remainingDeltaTime += diffTime;
       break;
     }
-    updateKey = false;
-    //std::this_thread::sleep_for(std::chrono::duration<double>(unitDeltaTime - remainingDeltaTime));
-    std::this_thread::sleep_for(std::chrono::microseconds(100));
+
+    // Sleep関数はコンテキストスイッチング等で大量のCPUサイクルを消費するため、案外CPUに優しくないらしい
+    // ia-optimization-reference-manual-2022-02-jp.pdf によると、 PAUSE 命令で置き換えるのが良いらしい
+    //
+    // ところで、PAUSE 1回につき10～140サイクル待機させられるので、複数回呼び出すことで待機時間を制御する
+    // CPUが2GHzで駆動すると仮定すると 140/2,000,000,000秒 = 70ns
+    // PAUSE を10回呼び出すと0.7us、1000回呼び出すと70us(0.07ms)となる
+    //
+    // さすがにこの回数のループは無意味だと思うので、待つべき時間によって呼び分けることにした
+    //
+    // ただ Sleep(0)は自分以上の優先度のスレッドがない場合は何もしない
+    // そこで、Sleep(0)の代わりに、優先度に関係なくスイッチする SwitchToThread を使うことにした
+    // こいつはスイッチが起こらなかったら0を返すので、そのときは PAUSE ループにフォールバックする
+
+    const double t = unitDeltaTime - remainingDeltaTime + diffTime;
+    if (t < 0.001 || SwitchToThread() == 0) {
+      for (int i = 0; i < 100; i++) {
+        _mm_pause();
+      }
+    }
   }
 
   Audio::Engine::Get().Update();
